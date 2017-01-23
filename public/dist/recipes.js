@@ -108,9 +108,11 @@ function deleteRecipesDB(){
   var recipeRef = firebase.database().ref('recipes');
   var contentIngredientsRef = firebase.database().ref('contents_Ingredients');
   var contentDirectionsRef = firebase.database().ref('contents_Directions');
+  var timeStampsRef = firebase.database().ref('time_Stamps');
   recipeRef.remove();
   contentIngredientsRef.remove();
   contentDirectionsRef.remove();
+  timeStampsRef.remove();
   dialog.close();
   var data = {message: 'Successfully deleted recipes from database.'};
   snackbar.MaterialSnackbar.showSnackbar(data);
