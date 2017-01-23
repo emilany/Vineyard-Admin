@@ -56,14 +56,21 @@ function loadRecipeFile() {
         var direction = "";
         var ingredient = "";
 
+        var description = actual_JSON[x].description;
+        var ingrSize = actual_JSON[x].ingredients.length;
+        var url = actual_JSON[x].url;
+
+      if(url != "//ajax.googleapis.com" || ingrSize != 0){
+        if(description == null || description == ""){
+          description = " ";
+        }
+
         firebase.database().ref('recipes/'+recipeID).set({
-            url: actual_JSON[x].url,
-            title: actual_JSON[x].title,
-            image_url: actual_JSON[x].image,
-            description: actual_JSON[x].description,
-            date_time_stamp_created: currdate.toString()
-            /*ingredients: "null",
-            directions: "null"*/
+          url: actual_JSON[x].url,
+          title: actual_JSON[x].title,
+          image_url: actual_JSON[x].image,
+          description: actual_JSON[x].description,
+          date_time_stamp_created: currdate.toString()
         });
 
         //direction
@@ -83,8 +90,7 @@ function loadRecipeFile() {
         firebase.database().ref('contents_Ingredients/'+recipeID).update({
           ingredients: ingredient
         });
-
-        
+      }        
     }
 
     var data = {message: 'Successfully added recipes to database.'};
