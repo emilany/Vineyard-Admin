@@ -69,7 +69,11 @@ function loadRecipeFile() {
           url: actual_JSON[x].url,
           title: actual_JSON[x].title,
           image_url: actual_JSON[x].image,
-          description: actual_JSON[x].description,
+          description: description
+        });
+
+        //timestamp
+        firebase.database().ref('time_Stamps/'+recipeID).set({
           date_time_stamp_created: currdate.toString()
         });
 
